@@ -28,7 +28,7 @@ export default function AnkiGame() {
     const shuffledCards = [...CARDS].sort(() => Math.random() - 0.5);
     const initialCards: CardState[] = shuffledCards.map((card) => ({
       ...card,
-      attemptsNeeded: 3,
+      attemptsNeeded: 1,
       correctStreak: 0,
     }));
 
@@ -71,10 +71,13 @@ export default function AnkiGame() {
       setFeedback(isCorrect ? 'correct' : 'incorrect');
       setShowAnswer(!isCorrect);
 
-      // Wait for user to see feedback
-      setTimeout(() => {
-        processAnswer(isCorrect);
-      }, 2000);
+      // Wait for user to see feedback (3 seconds for incorrect to see the answer)
+      setTimeout(
+        () => {
+          processAnswer(isCorrect);
+        },
+        isCorrect ? 2000 : 3000
+      );
     } catch (error) {
       console.error('Error validating answer:', error);
       setFeedback('incorrect');

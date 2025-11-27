@@ -295,7 +295,7 @@ export const CARDS: Card[] = [
     id: '48',
     question:
       'There are four amendments to the Constitution about who can vote. Describe one of them.',
-    correctAnswer: 'Any citizen can vote.',
+    correctAnswer: 'Citizens 18 and older can vote.',
   },
   {
     id: '49',

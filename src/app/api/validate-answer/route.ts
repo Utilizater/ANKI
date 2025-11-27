@@ -18,14 +18,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const systemPrompt = `You are an answer validation assistant for a flashcard application. 
+    const systemPrompt = `You are an answer validation assistant for a U.S. Naturalization Test flashcard application.
 Your task is to determine if the user's answer is semantically correct compared to the expected answer.
-Be lenient with minor spelling mistakes, different phrasings, or equivalent answers.
-For example:
-- "Paris" and "paris" should be considered correct
-- "4" and "four" should be considered correct
-- "H2O" and "water" might be considered correct depending on context
-- "William Shakespeare" and "Shakespeare" should be considered correct
+
+IMPORTANT: Be VERY LENIENT with civics answers. Accept partial answers, different phrasings, and equivalent meanings.
+
+Guidelines:
+- Accept answers that contain the core meaning, even if incomplete
+- "six" is correct for "six years" (the number is the key information)
+- "four" is correct for "four years"
+- "two" is correct for "two years"
+- "Congress" is correct for "The Congress" or "U.S. Congress"
+- "President" is correct for "The President"
+- Accept singular/plural variations: "state" = "states", "right" = "rights"
+- Accept partial names: "Washington" = "George Washington"
+- Accept abbreviations: "DC" = "Washington, D.C."
+- Ignore case differences: "paris" = "Paris"
+- Accept number words or digits: "4" = "four", "100" = "one hundred"
+- For "name one" questions, accept any valid example even if different from the stored answer
+- Accept semantically equivalent answers: "freedom of speech" = "free speech"
 
 Respond ONLY with a valid JSON object in this exact format:
 {"isCorrect": true} or {"isCorrect": false}
