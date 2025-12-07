@@ -36,16 +36,15 @@ export default function MusicNotes() {
     }
   };
 
-  const handleFrequencyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(e.target.value);
-    if (value > 0 && value <= 10) {
-      setFrequency(value);
-      if (isPlaying) {
-        stopPlaying();
-        setTimeout(() => startPlaying(), 100);
-      }
+  const handleFrequencyChange = (newFrequency: number) => {
+    setFrequency(newFrequency);
+    if (isPlaying) {
+      stopPlaying();
+      setTimeout(() => startPlaying(), 100);
     }
   };
+
+  const FREQUENCY_OPTIONS = [0.5, 1, 2, 3, 4];
 
   useEffect(() => {
     return () => {
@@ -59,24 +58,31 @@ export default function MusicNotes() {
     <div className='flex flex-col h-screen bg-gradient-to-br from-purple-50 to-pink-100'>
       {/* Control Panel */}
       <div className='bg-white shadow-md p-4'>
-        <div className='max-w-md mx-auto flex items-center gap-4'>
-          <div className='flex-1'>
-            <label className='block text-sm font-medium text-gray-700 mb-1'>
-              Frequency (seconds)
-            </label>
-            <input
-              type='number'
-              min='0.5'
-              max='10'
-              step='0.5'
-              value={frequency}
-              onChange={handleFrequencyChange}
-              className='w-full px-3 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-purple-500'
-            />
+        <div className='max-w-md mx-auto'>
+          <label className='block text-sm font-medium text-gray-700 mb-2 text-center'>
+            Frequency (seconds)
+          </label>
+
+          {/* Frequency Buttons */}
+          <div className='flex gap-2 mb-4'>
+            {FREQUENCY_OPTIONS.map((freq) => (
+              <button
+                key={freq}
+                onClick={() => handleFrequencyChange(freq)}
+                className={`flex-1 py-3 rounded-lg font-medium transition-colors ${
+                  frequency === freq
+                    ? 'bg-purple-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}>
+                {freq}s
+              </button>
+            ))}
           </div>
+
+          {/* Start/Stop Button */}
           <button
             onClick={isPlaying ? stopPlaying : startPlaying}
-            className={`px-6 py-2 rounded-lg font-medium transition-colors mt-6 ${
+            className={`w-full py-4 rounded-lg font-medium text-lg transition-colors ${
               isPlaying
                 ? 'bg-red-500 hover:bg-red-600 text-white'
                 : 'bg-purple-600 hover:bg-purple-700 text-white'
