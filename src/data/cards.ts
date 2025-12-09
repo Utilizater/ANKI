@@ -1,58 +1,5 @@
 import { Card } from '@/types';
 
-// export const CARDS: Card[] = [
-//   {
-//     id: '1',
-//     question: 'What is the capital of France?',
-//     correctAnswer: 'Paris',
-//   },
-//   {
-//     id: '2',
-//     question: 'What is 2 + 2?',
-//     correctAnswer: '4',
-//   },
-//   {
-//     id: '3',
-//     question: 'What color is the sky on a clear day?',
-//     correctAnswer: 'Blue',
-//   },
-//   {
-//     id: '4',
-//     question: 'How many continents are there?',
-//     correctAnswer: '7',
-//   },
-//   {
-//     id: '5',
-//     question: 'What is the largest planet in our solar system?',
-//     correctAnswer: 'Jupiter',
-//   },
-//   {
-//     id: '6',
-//     question: 'What is the chemical symbol for water?',
-//     correctAnswer: 'H2O',
-//   },
-//   {
-//     id: '7',
-//     question: 'Who wrote Romeo and Juliet?',
-//     correctAnswer: 'William Shakespeare',
-//   },
-//   {
-//     id: '8',
-//     question: 'What is the speed of light in vacuum (in km/s)?',
-//     correctAnswer: '300000',
-//   },
-//   {
-//     id: '9',
-//     question: 'What is the smallest prime number?',
-//     correctAnswer: '2',
-//   },
-//   {
-//     id: '10',
-//     question: 'What year did World War II end?',
-//     correctAnswer: '1945',
-//   },
-// ];
-
 export const CARDS: Card[] = [
   {
     id: '1',
@@ -70,157 +17,156 @@ export const CARDS: Card[] = [
       'The idea of self-government is in the first three words of the Constitution. What are these words?',
     correctAnswer: 'We the People',
   },
-  {
-    id: '4',
-    question: 'What is an amendment?',
-    correctAnswer: 'A change to the Constitution',
-  },
+  // {
+  //   id: '4',
+  //   question: 'What is an amendment?',
+  //   correctAnswer: 'A change to the Constitution',
+  // },
   {
     id: '5',
     question: 'What do we call the first ten amendments to the Constitution?',
     correctAnswer: 'The Bill of Rights',
   },
-  {
-    id: '6',
-    question: 'What is one right or freedom from the First Amendment?',
-    correctAnswer: 'Freedom of speech',
-  },
+  // {
+  //   id: '6',
+  //   question: 'What is one right or freedom from the First Amendment?',
+  //   correctAnswer: 'Freedom of speech',
+  // },
   {
     id: '7',
     question: 'How many amendments does the Constitution have?',
     correctAnswer: '27',
   },
-  {
-    id: '8',
-    question: 'What did the Declaration of Independence do?',
-    correctAnswer: 'It announced our independence.',
-  },
+  // {
+  //   id: '8',
+  //   question: 'What did the Declaration of Independence do?',
+  //   correctAnswer: 'It announced our independence.',
+  // },
   {
     id: '9',
     question: 'What are two rights in the Declaration of Independence?',
     correctAnswer: 'Life and liberty',
   },
-  {
-    id: '10',
-    question: 'What is freedom of religion?',
-    correctAnswer: 'You can practice any religion, or not practice a religion.',
-  },
-  {
-    id: '11',
-    question: 'What is the economic system in the United States?',
-    correctAnswer: 'Market economy',
-  },
-  {
-    id: '12',
-    question: 'What is the “rule of law”?',
-    correctAnswer: 'Everyone must follow the law.',
-  },
+  // {
+  //   id: '10',
+  //   question: 'What is freedom of religion?',
+  //   correctAnswer: 'You can practice any religion, or not practice a religion.',
+  // },
+  // {
+  //   id: '11',
+  //   question: 'What is the economic system in the United States?',
+  //   correctAnswer: 'Market economy',
+  // },
+  // {
+  //   id: '12',
+  //   question: 'What is the “rule of law”?',
+  //   correctAnswer: 'Everyone must follow the law.',
+  // },
 
-  {
-    id: '13',
-    question: 'Name one branch or part of the government.',
-    correctAnswer: 'Congress',
-  },
-  {
-    id: '14',
-    question: 'What stops one branch of government from becoming too powerful?',
-    correctAnswer: 'Checks and balances',
-  },
-  {
-    id: '15',
-    question: 'Who is in charge of the executive branch?',
-    correctAnswer: 'The President',
-  },
-  { id: '16', question: 'Who makes federal laws?', correctAnswer: 'Congress' },
-  {
-    id: '17',
-    question: 'What are the two parts of the U.S. Congress?',
-    correctAnswer: 'The Senate and the House (of Representatives)',
-  },
-  {
-    id: '18',
-    question: 'How many U.S. Senators are there?',
-    correctAnswer: '100',
-  },
-  {
-    id: '19',
-    question: 'We elect a U.S. Senator for how many years?',
-    correctAnswer: 'Six years',
-  },
+  // {
+  //   id: '13',
+  //   question: 'Name one branch or part of the government.',
+  //   correctAnswer: 'Congress',
+  // },
+  // {
+  //   id: '14',
+  //   question: 'What stops one branch of government from becoming too powerful?',
+  //   correctAnswer: 'Checks and balances',
+  // },
+  // {
+  //   id: '15',
+  //   question: 'Who is in charge of the executive branch?',
+  //   correctAnswer: 'The President',
+  // },
+  // { id: '16', question: 'Who makes federal laws?', correctAnswer: 'Congress' },
+  // {
+  //   id: '17',
+  //   question: 'What are the two parts of the U.S. Congress?',
+  //   correctAnswer: 'The Senate and the House of Representatives',
+  // },
+  // {
+  //   id: '18',
+  //   question: 'How many U.S. Senators are there?',
+  //   correctAnswer: '100',
+  // },
+  // {
+  //   id: '19',
+  //   question: 'We elect a U.S. Senator for how many years?',
+  //   correctAnswer: 'Six years',
+  // },
   {
     id: '20',
     question: 'Who is one of your state’s U.S. Senators now?',
-    correctAnswer: 'Rick Scott / Ashley Moody',
+    correctAnswer: 'Rick Scott',
   },
-  {
-    id: '21',
-    question: 'The House of Representatives has how many voting members?',
-    correctAnswer: '435',
-  },
-  {
-    id: '22',
-    question: 'We elect a U.S. Representative for how many years?',
-    correctAnswer: 'Two years',
-  },
+  // {
+  //   id: '21',
+  //   question: 'The House of Representatives has how many voting members?',
+  //   correctAnswer: '435',
+  // },
+  // {
+  //   id: '22',
+  //   question: 'We elect a U.S. Representative for how many years?',
+  //   correctAnswer: 'Two years',
+  // },
   {
     id: '23',
     question: 'Name your U.S. Representative.',
     correctAnswer: 'Kathy Castor',
   },
-  {
-    id: '24',
-    question: 'Who does a U.S. Senator represent?',
-    correctAnswer: 'All people of the state',
-  },
-  {
-    id: '25',
-    question: 'Why do some states have more Representatives than other states?',
-    correctAnswer: 'Because they have more people.',
-  },
-
-  {
-    id: '26',
-    question: 'We elect a President for how many years?',
-    correctAnswer: 'Four years',
-  },
-  {
-    id: '27',
-    question: 'In what month do we vote for President?',
-    correctAnswer: 'November',
-  },
-  {
-    id: '28',
-    question: 'What is the name of the President of the United States now?',
-    correctAnswer: 'Donald J. Trump',
-  },
-  {
-    id: '29',
-    question:
-      'What is the name of the Vice President of the United States now?',
-    correctAnswer: 'JD Vance',
-  },
-  {
-    id: '30',
-    question: 'If the President can no longer serve, who becomes President?',
-    correctAnswer: 'The Vice President',
-  },
+  // {
+  //   id: '24',
+  //   question: 'Who does a U.S. Senator represent?',
+  //   correctAnswer: 'All people of the state',
+  // },
+  // {
+  //   id: '25',
+  //   question: 'Why do some states have more Representatives than other states?',
+  //   correctAnswer: 'Because they have more people.',
+  // },
+  // {
+  //   id: '26',
+  //   question: 'We elect a President for how many years?',
+  //   correctAnswer: 'Four years',
+  // },
+  // {
+  //   id: '27',
+  //   question: 'In what month do we vote for President?',
+  //   correctAnswer: 'November',
+  // },
+  // {
+  //   id: '28',
+  //   question: 'What is the name of the President of the United States now?',
+  //   correctAnswer: 'Donald J. Trump',
+  // },
+  // {
+  //   id: '29',
+  //   question:
+  //     'What is the name of the Vice President of the United States now?',
+  //   correctAnswer: 'JD Vance',
+  // },
+  // {
+  //   id: '30',
+  //   question: 'If the President can no longer serve, who becomes President?',
+  //   correctAnswer: 'The Vice President',
+  // },
   {
     id: '31',
     question:
       'If both the President and the Vice President can no longer serve, who becomes President?',
     correctAnswer: 'The Speaker of the House',
   },
-  {
-    id: '32',
-    question: 'Who is the Commander in Chief of the military?',
-    correctAnswer: 'The President',
-  },
-  {
-    id: '33',
-    question: 'Who signs bills to become laws?',
-    correctAnswer: 'The President',
-  },
-  { id: '34', question: 'Who vetoes bills?', correctAnswer: 'The President' },
+  // {
+  //   id: '32',
+  //   question: 'Who is the Commander in Chief of the military?',
+  //   correctAnswer: 'The President',
+  // },
+  // {
+  //   id: '33',
+  //   question: 'Who signs bills to become laws?',
+  //   correctAnswer: 'The President',
+  // },
+  // { id: '34', question: 'Who vetoes bills?', correctAnswer: 'The President' },
   {
     id: '35',
     question: 'What does the President’s Cabinet do?',
@@ -241,11 +187,11 @@ export const CARDS: Card[] = [
     question: 'What is the highest court in the United States?',
     correctAnswer: 'The Supreme Court',
   },
-  {
-    id: '39',
-    question: 'How many justices are on the Supreme Court?',
-    correctAnswer: 'Nine',
-  },
+  // {
+  //   id: '39',
+  //   question: 'How many justices are on the Supreme Court?',
+  //   correctAnswer: 'Nine',
+  // },
   {
     id: '40',
     question: 'Who is the Chief Justice of the United States now?',
@@ -256,7 +202,7 @@ export const CARDS: Card[] = [
     id: '41',
     question:
       'Under our Constitution, some powers belong to the federal government. What is one power of the federal government?',
-    correctAnswer: 'To print money',
+    correctAnswer: 'To declare war',
   },
   {
     id: '42',
@@ -274,16 +220,16 @@ export const CARDS: Card[] = [
     question: 'What is the capital of your state?',
     correctAnswer: 'Tallahassee',
   },
-  {
-    id: '45',
-    question: 'What are the two major political parties in the United States?',
-    correctAnswer: 'Democratic and Republican',
-  },
-  {
-    id: '46',
-    question: 'What is the political party of the President now?',
-    correctAnswer: 'Republican',
-  },
+  // {
+  //   id: '45',
+  //   question: 'What are the two major political parties in the United States?',
+  //   correctAnswer: 'Democratic and Republican',
+  // },
+  // {
+  //   id: '46',
+  //   question: 'What is the political party of the President now?',
+  //   correctAnswer: 'Republican',
+  // },
   {
     id: '47',
     question:
@@ -291,12 +237,12 @@ export const CARDS: Card[] = [
     correctAnswer: 'Mike Johnson',
   },
 
-  {
-    id: '48',
-    question:
-      'There are four amendments to the Constitution about who can vote. Describe one of them.',
-    correctAnswer: 'Citizens 18 and older can vote.',
-  },
+  // {
+  //   id: '48',
+  //   question:
+  //     'There are four amendments to the Constitution about who can vote. Describe one of them.',
+  //   correctAnswer: 'Citizens 18 and older can vote.',
+  // },
   {
     id: '49',
     question:
@@ -311,7 +257,7 @@ export const CARDS: Card[] = [
   {
     id: '51',
     question: 'What are two rights of everyone living in the United States?',
-    correctAnswer: 'Freedom of speech; freedom of assembly',
+    correctAnswer: 'Freedom of speech; freedom of religion',
   },
   {
     id: '52',
@@ -319,17 +265,17 @@ export const CARDS: Card[] = [
       'What do we show loyalty to when we say the Pledge of Allegiance?',
     correctAnswer: 'The United States',
   },
-  {
-    id: '53',
-    question:
-      'What is one promise you make when you become a United States citizen?',
-    correctAnswer: 'Obey the laws of the United States',
-  },
-  {
-    id: '54',
-    question: 'How old do citizens have to be to vote for President?',
-    correctAnswer: '18 or older',
-  },
+  // {
+  //   id: '53',
+  //   question:
+  //     'What is one promise you make when you become a United States citizen?',
+  //   correctAnswer: 'Give up loyalty to other countries',
+  // },
+  // {
+  //   id: '54',
+  //   question: 'How old do citizens have to be to vote for President?',
+  //   correctAnswer: '18 or older',
+  // },
   {
     id: '55',
     question:
@@ -346,27 +292,26 @@ export const CARDS: Card[] = [
     question: 'When must all men register for the Selective Service?',
     correctAnswer: 'Between 18 and 26',
   },
-
-  {
-    id: '58',
-    question: 'What is one reason colonists came to America?',
-    correctAnswer: 'Freedom',
-  },
-  {
-    id: '59',
-    question: 'Who lived in America before the Europeans arrived?',
-    correctAnswer: 'American Indians',
-  },
-  {
-    id: '60',
-    question: 'What group of people was taken to America and sold as slaves?',
-    correctAnswer: 'People from Africa',
-  },
-  {
-    id: '61',
-    question: 'Why did the colonists fight the British?',
-    correctAnswer: 'Because of high taxes',
-  },
+  // {
+  //   id: '58',
+  //   question: 'What is one reason colonists came to America?',
+  //   correctAnswer: 'Freedom',
+  // },
+  // {
+  //   id: '59',
+  //   question: 'Who lived in America before the Europeans arrived?',
+  //   correctAnswer: 'American Indians',
+  // },
+  // {
+  //   id: '60',
+  //   question: 'What group of people was taken to America and sold as slaves?',
+  //   correctAnswer: 'People from Africa',
+  // },
+  // {
+  //   id: '61',
+  //   question: 'Why did the colonists fight the British?',
+  //   correctAnswer: 'Because of high taxes',
+  // },
   {
     id: '62',
     question: 'Who wrote the Declaration of Independence?',
@@ -443,17 +388,17 @@ export const CARDS: Card[] = [
     question: 'What did the Emancipation Proclamation do?',
     correctAnswer: 'Freed the slaves',
   },
-  {
-    id: '77',
-    question: 'What did Susan B. Anthony do?',
-    correctAnswer: 'Fought for women’s rights',
-  },
+  // {
+  //   id: '77',
+  //   question: 'What did Susan B. Anthony do?',
+  //   correctAnswer: 'Fought for women’s rights',
+  // },
 
-  {
-    id: '78',
-    question: 'Name one war fought by the United States in the 1900s.',
-    correctAnswer: 'Vietnam War',
-  },
+  // {
+  //   id: '78',
+  //   question: 'Name one war fought by the United States in the 1900s.',
+  //   correctAnswer: 'Vietnam War',
+  // },
   {
     id: '79',
     question: 'Who was President during World War I?',
@@ -475,12 +420,12 @@ export const CARDS: Card[] = [
       'Before he was President, Eisenhower was a general. What war was he in?',
     correctAnswer: 'World War II',
   },
-  {
-    id: '83',
-    question:
-      'During the Cold War, what was the main concern of the United States?',
-    correctAnswer: 'Communism',
-  },
+  // {
+  //   id: '83',
+  //   question:
+  //     'During the Cold War, what was the main concern of the United States?',
+  //   correctAnswer: 'Communism',
+  // },
   {
     id: '84',
     question: 'What movement tried to end racial discrimination?',
@@ -507,16 +452,16 @@ export const CARDS: Card[] = [
     question: 'Name one of the two longest rivers in the United States.',
     correctAnswer: 'Mississippi River',
   },
-  {
-    id: '89',
-    question: 'What ocean is on the West Coast of the United States?',
-    correctAnswer: 'Pacific Ocean',
-  },
-  {
-    id: '90',
-    question: 'What ocean is on the East Coast of the United States?',
-    correctAnswer: 'Atlantic Ocean',
-  },
+  // {
+  //   id: '89',
+  //   question: 'What ocean is on the West Coast of the United States?',
+  //   correctAnswer: 'Pacific Ocean',
+  // },
+  // {
+  //   id: '90',
+  //   question: 'What ocean is on the East Coast of the United States?',
+  //   correctAnswer: 'Atlantic Ocean',
+  // },
   {
     id: '91',
     question: 'Name one U.S. territory.',
@@ -542,16 +487,16 @@ export const CARDS: Card[] = [
     question: 'Where is the Statue of Liberty?',
     correctAnswer: 'New York Harbor',
   },
-  {
-    id: '96',
-    question: 'Why does the flag have 13 stripes?',
-    correctAnswer: 'Because there were 13 original colonies',
-  },
-  {
-    id: '97',
-    question: 'Why does the flag have 50 stars?',
-    correctAnswer: 'Because there are 50 states',
-  },
+  // {
+  //   id: '96',
+  //   question: 'Why does the flag have 13 stripes?',
+  //   correctAnswer: 'Because there were 13 original colonies',
+  // },
+  // {
+  //   id: '97',
+  //   question: 'Why does the flag have 50 stars?',
+  //   correctAnswer: 'Because there are 50 states',
+  // },
   {
     id: '98',
     question: 'What is the name of the national anthem?',
