@@ -2,30 +2,31 @@
 
 import { useState, useEffect } from 'react';
 import { Card, CardState, GameState, FeedbackType } from '@/types';
-import { CARDS } from '@/data/cards';
 import CardDisplay from './CardDisplay';
 import AnswerInput from './AnswerInput';
 import FeedbackDisplay from './FeedbackDisplay';
 import GameComplete from './GameComplete';
 
-export default function AnkiGame() {
+interface AnkiGameProps {
+  cards: Card[];
+  onBack: () => void;
+}
+
+export default function AnkiGame({ cards, onBack }: AnkiGameProps) {
   const [gameState, setGameState] = useState<GameState>({
     cards: [],
     currentCardIndex: 0,
     isComplete: false,
   });
   const [feedback, setFeedback] = useState<FeedbackType>(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
 
-  // Initialize game
   useEffect(() => {
     initializeGame();
   }, []);
 
   const initializeGame = () => {
-    // Shuffle cards and initialize state
-    const shuffledCards = [...CARDS].sort(() => Math.random() - 0.5);
+    const shuffledCards = [...cards].sort(() => Math.random() - 0.5);
     const initialCards: CardState[] = shuffledCards.map((card) => ({
       ...card,
       attemptsNeeded: 1,
@@ -46,44 +47,24 @@ export default function AnkiGame() {
     return gameState.cards[gameState.currentCardIndex] || null;
   };
 
-  const handleSubmitAnswer = async (userAnswer: string) => {
+  const normalize = (s: string) =>
+    s.trim().normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+  const handleSubmitAnswer = (userAnswer: string) => {
     const currentCard = getCurrentCard();
-    if (!currentCard || isLoading) return;
+    if (!currentCard) return;
 
-    setIsLoading(true);
-    setShowAnswer(false);
+    const isCorrect = normalize(userAnswer) === normalize(currentCard.correctAnswer);
 
-    try {
-      const response = await fetch('/api/validate-answer', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          userAnswer,
-          correctAnswer: currentCard.correctAnswer,
-        }),
-      });
+    setFeedback(isCorrect ? 'correct' : 'incorrect');
+    setShowAnswer(!isCorrect);
 
-      const data = await response.json();
-      const isCorrect = data.isCorrect;
-
-      setFeedback(isCorrect ? 'correct' : 'incorrect');
-      setShowAnswer(!isCorrect);
-
-      // Wait for user to see feedback (3 seconds for incorrect to see the answer)
-      setTimeout(
-        () => {
-          processAnswer(isCorrect);
-        },
-        isCorrect ? 2000 : 3000
-      );
-    } catch (error) {
-      console.error('Error validating answer:', error);
-      setFeedback('incorrect');
-      setIsLoading(false);
+    if (isCorrect) {
+      setTimeout(() => processAnswer(true), 2000);
     }
   };
+
+  const handleNext = () => processAnswer(false);
 
   const processAnswer = (isCorrect: boolean) => {
     const currentCard = getCurrentCard();
@@ -93,58 +74,34 @@ export default function AnkiGame() {
     const currentIndex = gameState.currentCardIndex;
 
     if (isCorrect) {
-      // Increment correct streak
       const newStreak = currentCard.correctStreak + 1;
 
       if (newStreak >= currentCard.attemptsNeeded) {
-        // Card completed - remove from array
         updatedCards.splice(currentIndex, 1);
       } else {
-        // Update streak and move to end
-        updatedCards[currentIndex] = {
-          ...currentCard,
-          correctStreak: newStreak,
-        };
-        // Move card to end of array
+        updatedCards[currentIndex] = { ...currentCard, correctStreak: newStreak };
         const card = updatedCards.splice(currentIndex, 1)[0];
         updatedCards.push(card);
       }
     } else {
-      // Reset streak and mark as needing 3 correct answers
-      updatedCards[currentIndex] = {
-        ...currentCard,
-        attemptsNeeded: 3,
-        correctStreak: 0,
-      };
-      // Move card to end of array
+      updatedCards[currentIndex] = { ...currentCard, attemptsNeeded: 3, correctStreak: 0 };
       const card = updatedCards.splice(currentIndex, 1)[0];
       updatedCards.push(card);
     }
 
-    // Check if game is complete
     if (updatedCards.length === 0) {
-      setGameState({
-        ...gameState,
-        cards: updatedCards,
-        isComplete: true,
-      });
+      setGameState({ ...gameState, cards: updatedCards, isComplete: true });
     } else {
-      // Move to next card (which is now at current index due to removal/rotation)
       const nextIndex = currentIndex >= updatedCards.length ? 0 : currentIndex;
-      setGameState({
-        ...gameState,
-        cards: updatedCards,
-        currentCardIndex: nextIndex,
-      });
+      setGameState({ ...gameState, cards: updatedCards, currentCardIndex: nextIndex });
     }
 
     setFeedback(null);
     setShowAnswer(false);
-    setIsLoading(false);
   };
 
   if (gameState.isComplete) {
-    return <GameComplete onRestart={initializeGame} />;
+    return <GameComplete onRestart={initializeGame} onChangeDeck={onBack} />;
   }
 
   const currentCard = getCurrentCard();
@@ -168,9 +125,7 @@ export default function AnkiGame() {
             <div
               className='bg-indigo-600 h-2 rounded-full transition-all duration-300'
               style={{
-                width: `${
-                  ((CARDS.length - gameState.cards.length) / CARDS.length) * 100
-                }%`,
+                width: `${((cards.length - gameState.cards.length) / cards.length) * 100}%`,
               }}
             />
           </div>
@@ -188,11 +143,20 @@ export default function AnkiGame() {
         {/* Feedback */}
         {feedback && <FeedbackDisplay type={feedback} />}
 
-        {/* Answer input */}
-        <AnswerInput
-          onSubmit={handleSubmitAnswer}
-          disabled={isLoading || feedback !== null}
-        />
+        {/* Answer input / Next button */}
+        {feedback === 'incorrect' ? (
+          <button
+            autoFocus
+            onClick={handleNext}
+            className='w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-4 rounded-2xl shadow-xl transition-colors'>
+            Next →
+          </button>
+        ) : (
+          <AnswerInput
+            onSubmit={handleSubmitAnswer}
+            disabled={feedback !== null}
+          />
+        )}
       </div>
     </div>
   );

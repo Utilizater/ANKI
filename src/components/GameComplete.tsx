@@ -2,9 +2,10 @@ import { Trophy } from 'lucide-react';
 
 interface GameCompleteProps {
   onRestart: () => void;
+  onChangeDeck: () => void;
 }
 
-export default function GameComplete({ onRestart }: GameCompleteProps) {
+export default function GameComplete({ onRestart, onChangeDeck }: GameCompleteProps) {
   return (
     <div className='flex flex-col items-center justify-center min-h-screen p-4 bg-gradient-to-br from-green-50 to-emerald-100'>
       <div className='bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center'>
@@ -25,8 +26,13 @@ export default function GameComplete({ onRestart }: GameCompleteProps) {
 
         <button
           onClick={onRestart}
-          className='w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-4 px-6 rounded-lg transition-colors text-lg'>
-          Start New Session
+          className='w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-4 px-6 rounded-lg transition-colors text-lg mb-3'>
+          Play Again
+        </button>
+        <button
+          onClick={onChangeDeck}
+          className='w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-4 px-6 rounded-lg transition-colors text-lg'>
+          Choose Another Deck
         </button>
       </div>
     </div>

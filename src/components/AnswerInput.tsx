@@ -13,6 +13,13 @@ export default function AnswerInput({ onSubmit, disabled }: AnswerInputProps) {
   const [isRecording, setIsRecording] = useState(false);
   const [isVoiceMode, setIsVoiceMode] = useState(false);
   const recognitionRef = useRef<any>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!disabled && !isVoiceMode) {
+      inputRef.current?.focus();
+    }
+  }, [disabled]);
 
   useEffect(() => {
     // Initialize Web Speech API
@@ -154,6 +161,7 @@ export default function AnswerInput({ onSubmit, disabled }: AnswerInputProps) {
       ) : (
         <form onSubmit={handleSubmit} className='flex gap-2'>
           <input
+            ref={inputRef}
             type='text'
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
