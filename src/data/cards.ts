@@ -35,7 +35,7 @@ export const CARD_SETS: Record<string, Card[]> = {
     { id: '14', question: 'apple', correctAnswer: 'manzana' },
     { id: '15', question: 'bread', correctAnswer: 'pan' },
   ],
-  'Verbs': [
+  Verbs: [
     { id: '1', question: 'to be', correctAnswer: 'ser' },
     { id: '2', question: 'to have', correctAnswer: 'tener' },
     { id: '3', question: 'to go', correctAnswer: 'ir' },
@@ -69,7 +69,7 @@ export const CARD_SETS: Record<string, Card[]> = {
     { id: '14', question: 'game', correctAnswer: 'juego' },
     { id: '15', question: 'phone', correctAnswer: 'teléfono' },
   ],
-  'Adjectives': [
+  Adjectives: [
     { id: '1', question: 'big', correctAnswer: 'grande' },
     { id: '2', question: 'small', correctAnswer: 'pequeño' },
     { id: '3', question: 'good', correctAnswer: 'bueno' },
@@ -85,5 +85,27 @@ export const CARD_SETS: Record<string, Card[]> = {
     { id: '13', question: 'new', correctAnswer: 'nuevo' },
     { id: '14', question: 'old', correctAnswer: 'viejo' },
     { id: '15', question: 'beautiful', correctAnswer: 'hermoso' },
+  ],
+  Clothes: [
+    { id: '1', question: 'this', correctAnswer: 'este' },
+    { id: '2', question: 'to buy', correctAnswer: 'comprar' },
+    { id: '3', question: 'hat', correctAnswer: 'sombrero' },
+    { id: '4', question: 'gray', correctAnswer: 'gris' },
+    { id: '5', question: 'T-shirt', correctAnswer: 'camiseta' },
+    { id: '6', question: 'dress', correctAnswer: 'vestido' },
+    { id: '7', question: 'brown', correctAnswer: 'marrón' },
+    { id: '8', question: 'different', correctAnswer: 'diferente' },
+    { id: '9', question: 'coat', correctAnswer: 'abrigo' },
+    { id: '10', question: 'expensive', correctAnswer: 'caro' },
+    { id: '11', question: 'that', correctAnswer: 'ese' },
+    { id: '12', question: 'cheap', correctAnswer: 'barato' },
+    { id: '13', question: 'skirt', correctAnswer: 'falda' },
+    { id: '14', question: 'red', correctAnswer: 'rojo' },
+    { id: '15', question: 'shirt', correctAnswer: 'camisa' },
+    { id: '16', question: 'clothes', correctAnswer: 'ropa' },
+    { id: '17', question: 'store', correctAnswer: 'tienda' },
+    { id: '18', question: 'jacket', correctAnswer: 'chaqueta' },
+    { id: '19', question: 'blue', correctAnswer: 'azul' },
+    { id: '20', question: 'green', correctAnswer: 'verde' },
   ],
 };
