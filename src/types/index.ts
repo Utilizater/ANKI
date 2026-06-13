@@ -2,6 +2,7 @@ export interface Card {
   id: string;
   question: string;
   correctAnswer: string;
+  mnemonic?: string;
 }
 
 export interface CardState extends Card {

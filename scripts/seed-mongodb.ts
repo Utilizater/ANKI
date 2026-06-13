@@ -20,18 +20,24 @@ async function seed() {
     const db = client.db(DB_NAME);
     const collection = db.collection(COLLECTION);
 
-    const documents = Object.entries(CARD_SETS).map(([name, cards]) => ({
-      name,
-      cards,
-      createdAt: new Date(),
-    }));
+    for (const [name, cards] of Object.entries(CARD_SETS)) {
+      const existing = await collection.findOne({ name });
 
-    // Drop existing data and re-insert
-    await collection.deleteMany({});
-    const result = await collection.insertMany(documents);
+      // Preserve existing mnemonics by card id
+      const mergedCards = cards.map((card) => {
+        const existingCard = existing?.cards?.find((c: { id: string }) => c.id === card.id);
+        return existingCard?.mnemonic ? { ...card, mnemonic: existingCard.mnemonic } : card;
+      });
 
-    console.log(`Seeded ${result.insertedCount} card sets:`);
-    documents.forEach((doc) => console.log(`  - ${doc.name} (${doc.cards.length} cards)`));
+      await collection.replaceOne(
+        { name },
+        { name, cards: mergedCards, createdAt: existing?.createdAt ?? new Date(), updatedAt: new Date() },
+        { upsert: true }
+      );
+
+      console.log(`  - ${name} (${mergedCards.length} cards, ${mergedCards.filter((c) => c.mnemonic).length} mnemonics preserved)`);
+    }
+    console.log('Done.');
   } finally {
     await client.close();
   }

@@ -9,10 +9,11 @@ import GameComplete from './GameComplete';
 
 interface AnkiGameProps {
   cards: Card[];
+  deckName: string;
   onBack: () => void;
 }
 
-export default function AnkiGame({ cards, onBack }: AnkiGameProps) {
+export default function AnkiGame({ cards, deckName, onBack }: AnkiGameProps) {
   const [gameState, setGameState] = useState<GameState>({
     cards: [],
     currentCardIndex: 0,
@@ -20,6 +21,7 @@ export default function AnkiGame({ cards, onBack }: AnkiGameProps) {
   });
   const [feedback, setFeedback] = useState<FeedbackType>(null);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [mnemonicLoading, setMnemonicLoading] = useState(false);
 
   useEffect(() => {
     initializeGame();
@@ -65,6 +67,35 @@ export default function AnkiGame({ cards, onBack }: AnkiGameProps) {
   };
 
   const handleNext = () => processAnswer(false);
+
+  const handleGenerateMnemonic = async () => {
+    const currentCard = getCurrentCard();
+    if (!currentCard) return;
+
+    setMnemonicLoading(true);
+    try {
+      const res = await fetch('/api/mnemonic', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          cardId: currentCard.id,
+          deckName,
+          question: currentCard.question,
+          correctAnswer: currentCard.correctAnswer,
+        }),
+      });
+      const { mnemonic } = await res.json();
+
+      const updatedCards = [...gameState.cards];
+      updatedCards[gameState.currentCardIndex] = {
+        ...updatedCards[gameState.currentCardIndex],
+        mnemonic,
+      };
+      setGameState({ ...gameState, cards: updatedCards });
+    } finally {
+      setMnemonicLoading(false);
+    }
+  };
 
   const processAnswer = (isCorrect: boolean) => {
     const currentCard = getCurrentCard();
@@ -145,12 +176,34 @@ export default function AnkiGame({ cards, onBack }: AnkiGameProps) {
 
         {/* Answer input / Next button */}
         {feedback === 'incorrect' ? (
-          <button
-            autoFocus
-            onClick={handleNext}
-            className='w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-4 rounded-2xl shadow-xl transition-colors'>
-            Next →
-          </button>
+          <div className='flex flex-col gap-3'>
+            {currentCard.mnemonic && (
+              <div className='bg-amber-50 border border-amber-200 rounded-2xl p-4'>
+                <p className='text-xs font-semibold text-amber-600 uppercase tracking-wide mb-1'>
+                  Мнемоника
+                </p>
+                <p className='text-amber-900 text-sm leading-relaxed'>
+                  {currentCard.mnemonic}
+                </p>
+              </div>
+            )}
+            <button
+              onClick={handleGenerateMnemonic}
+              disabled={mnemonicLoading}
+              className='w-full bg-amber-100 hover:bg-amber-200 text-amber-800 font-medium py-3 rounded-2xl transition-colors disabled:opacity-50'>
+              {mnemonicLoading
+                ? 'Generating...'
+                : currentCard.mnemonic
+                  ? 'Regenerate mnemonic'
+                  : 'Generate mnemonic'}
+            </button>
+            <button
+              autoFocus
+              onClick={handleNext}
+              className='w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-4 rounded-2xl shadow-xl transition-colors'>
+              Next →
+            </button>
+          </div>
         ) : (
           <AnswerInput
             onSubmit={handleSubmitAnswer}

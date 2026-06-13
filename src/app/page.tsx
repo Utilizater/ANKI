@@ -40,5 +40,5 @@ export default function Home() {
     return <DeckSelect onSelect={handleSelectDeck} />;
   }
 
-  return <AnkiGame cards={cards} onBack={handleBack} />;
+  return <AnkiGame cards={cards} deckName={selectedDeck} onBack={handleBack} />;
 }
