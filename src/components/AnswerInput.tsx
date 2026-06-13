@@ -55,7 +55,7 @@ export default function AnswerInput({ onSubmit, disabled }: AnswerInputProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (answer.trim() && !disabled) {
+    if (!disabled) {
       onSubmit(answer.trim());
       setAnswer('');
     }
@@ -171,7 +171,7 @@ export default function AnswerInput({ onSubmit, disabled }: AnswerInputProps) {
           />
           <button
             type='submit'
-            disabled={disabled || !answer.trim()}
+            disabled={disabled}
             className='bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed'>
             <Send className='w-6 h-6' />
           </button>
